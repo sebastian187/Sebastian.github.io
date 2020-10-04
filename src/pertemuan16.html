@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pertemuan 16</title>
+</head>
+
+<body>
+    <div>
+        <table>
+            <tr>
+                <td class="table">
+                    <h1>Nilai 1</h1>
+                </td>
+                <td>
+
+                </td>
+                <td class="table">
+                    <h1>Nilai 2</h1>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="number" id="value1">
+                </td>
+                <td>
+                    <select name="" id="operator">
+                        <option value="+">+</option>
+                        <option value="-">-</option>
+                        <option value="*">*</option>
+                        <option value="/">/</option>
+                        <option value="^">^</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="number" id="value2">
+                </td>
+                <td>
+                    <button type="submit" onclick="kalkulatorSederhana()">Submit</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="table">
+                    <h2>Hasil</h2>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="table">
+                    <h2 id="hasil"></h2>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const kalkulatorSederhana = () => {
+            let getOperator = () => document.getElementById('operator').value
+            const value1 = parseFloat(document.getElementById('value1').value);
+            const value2 = parseFloat(document.getElementById('value2').value);
+            let hasil;
+
+            switch(getOperator()){
+                case '+' : hasil =  value1 + value2 ; break;
+                case '-' : hasil =  value1 - value2 ; break;
+                case '*' : hasil =  value1 * value2 ; break;
+                case '/' : hasil =  value1 / value2 ; break;
+                case '^' : hasil =  Math.pow(value1, value2) ; break;
+            }   
+
+            isNaN(hasil) ? alert('value tidak valid') : document.getElementById('hasil').innerHTML = hasil;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pertemuan 14</title>
+</head>
+<body>
+
+    <h1>Menghitung Luas Trapesium</h1>
+    <h3>Diketahui</h3>
+    <table>
+        <tr>
+            <td><p>Garis Atas</p></td>
+            <td><input type="number" id="atas"> Cm</td>
+        </tr>
+        <tr>
+            <td><p>Garis Bawah</p></td>
+            <td><input type="number" id="bawah"> Cm</td>
+        </tr>
+        <tr>
+            <td><p>Tinggi</p></td>
+            <td><input type="number" id="tinggi"> Cm</td>
+        </tr>
+        <tr>
+            <td colspan="2"><h4>Maka</h4></td>
+        </tr>
+        <tr>
+            <td><p>Luas</p></td>
+            <td><p id="hasil">............ Cm</p></td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" onclick="luas()">Hitung</button>
+            </td>
+        </tr>
+    </table>
+    <Script>
+        const luas = () => {
+            const atas = document.getElementById("atas").value;
+            const bawah = document.getElementById("bawah").value;
+            const tinggi = document.getElementById("tinggi").value;
+
+            const luas = ((parseInt(atas) + parseInt(bawah))*parseInt(tinggi))/2
+            document.getElementById("hasil").innerHTML = `${luas} Cm`
+        }
+    </Script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pertemuan 15</title>
+</head>
+
+<body>
+    <table>
+        <tr>
+        <td>
+            <p>Nama</p>
+        </td>
+        <td>
+            <input type="text" id="nama">
+        </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Kode Booking</p>
+            </td>
+            <td>
+                <select name="kd_boking" id="kd_boking" >
+                    <option value="BG123">BG123</option>
+                    <option value="AL212">AL212</option>
+                    <option value="CR112">CR112</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Lama Inap</p>
+            </td>
+            <td>
+                <p><input type="number" id="lamaInap"> Hari</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Jumlah Penginap</p>
+            </td>
+            <td>
+                <p><input type="number" id="jmlPenginap"> Orang</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button onclick="hitungJumlahBayar()">Proses</button>
+            </td>
+        </tr>
+    </table>
+    
+    <br>
+    <hr color="brown">
+    <br>
+    <table>
+        <tr>
+            <td><p>Nama</p></td>
+            <td><p>:</p></td>
+            <td><p id="hNama">.........</p></td>
+        </tr>
+        <tr>
+            <td><p>No Kamar</p></td>
+            <td><p>:</p></td>
+            <td><p id="hNoKamar">.........</p></td>
+        </tr>
+        <tr>
+            <td><p>Jumlah Hari Menginap</p></td>
+            <td><p>:</p></td>
+            <td><p id="hHari">.........</p></td>
+        </tr>
+        <tr>
+            <td><p>Jumlah Penginap</p></td>
+            <td><p>:</p></td>
+            <td><p id="hJmlPenginap">.........</p></td>
+        </tr>
+        <tr>
+            <td><p>Jumlah Bayar</p></td>
+            <td><p>:</p></td>
+            <td><p id="hTotal">.........</p></td>
+        </tr>
+    </table>
+
+    <script>
+        const updateValue = (nama, lamaInap, jumlahPenginap, totalHarga, noKamar) => {
+            document.getElementById('hNama').innerHTML = nama;
+            document.getElementById('hNoKamar').innerHTML = noKamar
+            document.getElementById('hHari').innerHTML = lamaInap;
+            document.getElementById('hJmlPenginap').innerHTML = jumlahPenginap;
+            document.getElementById('hTotal').innerHTML = `Rp. ${totalHarga}`;
+        }
+
+        const hitungJumlahBayar = () => {
+            const nama = document.getElementById('nama').value;
+            const lamaInap = document.getElementById('lamaInap').value;
+            const jumlahPenginap = document.getElementById('jmlPenginap').value;
+            let kdBoking = () => document.getElementById('kd_boking').value;
+            
+            let kdKamar = kdBoking().substr(0,2);
+            let noKamar = kdBoking().substr(2)
+            let hargaKamar;
+            let totalHarga;
+            
+            switch(kdKamar){
+                case 'BG' : hargaKamar = 425000 ; break;
+                case 'AL' : hargaKamar = 375000 ; break;
+                case 'CR' : hargaKamar = 300000 ; break;
+            }
+            // console.log(nama)
+            if(jumlahPenginap > 2){
+                alert('Jumlah penginap lebih dari 2 \nMaka akan di kenakan biaya charge 75000/orang')
+                let charge = (jumlahPenginap - 2) * 75000;
+                totalHarga = hargaKamar * lamaInap + charge;
+                if(totalHarga > 1500000){
+                    totalHarga -= totalHarga * 3/100
+                    // console.log('diskon')
+                }
+                addEventListener('click', updateValue(nama, lamaInap, jumlahPenginap, totalHarga, noKamar))
+                updateValue(nama, lamaInap, jumlahPenginap, totalHarga, noKamar)
+                // console.log(totalHarga)
+            }else{
+                totalHarga = hargaKamar * lamaInap
+                if(totalHarga > 1500000){
+                    totalHarga -= totalHarga * 3/100
+                    // console.log('diskon')
+                }
+                updateValue(nama, lamaInap, jumlahPenginap, totalHarga, noKamar)
+            }
+        }
+    </script>
+</body>
+</html>

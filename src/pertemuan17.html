@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pertemuan 17</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td><h2>Input</h2></td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Nilai Awal</p>
+                </td>
+                <td>
+                    <p>:</p>
+                </td>
+                <td>
+                    <input type="number" id="awal">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Nilai Akhir</p>
+                </td>
+                <td>
+                    <p>:</p>
+                </td>
+                <td>
+                    <input type="number" id="akhir">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" onclick="deretBilangan()">Proses</button>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><h2>Output</h2></td>
+            </tr>
+            <tr>
+                <td><p>Deret bilangan</p></td>
+                <td><p>:</p></td>
+                <td><p id="hasil1">..........</p></td>
+            </tr>
+            <tr>
+                <td><p>Jumlah bilangan</p></td>
+                <td><p>:</p></td>
+                <td><p id="hasil2">..........</p></td>
+            </tr>
+            <tr>
+                <td><p>Jumlah nilai bilangan</p></td>
+                <td><p>:</p></td>
+                <td><p id="hasil3">..........</p></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const deretBilangan = () => {
+            const nilaiAwal = parseFloat(document.getElementById('awal').value);
+            const nilaiAkhir = parseFloat(document.getElementById('akhir').value);
+            let i;
+            let bilGenap = []
+            nilaiAwal > nilaiAkhir ? alert('nilai awal harus lebih kecil dari nilai akhir') : null
+            for(i = nilaiAwal ; i < nilaiAkhir ; i++){
+                if(i%2 == 0){
+                    bilGenap.push(i);
+                }
+            }
+            const hasil = bilGenap.filter((value) => value % 5 == 0 )
+            const total = hasil.reduce((accumulator , value) => accumulator += value)
+            document.getElementById('hasil1').innerHTML = hasil;
+            document.getElementById('hasil2').innerHTML = hasil.length;
+            document.getElementById('hasil3').innerHTML =  total;
+        }
+    </script>
+</body>
+</html>
